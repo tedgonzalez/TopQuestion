@@ -29,7 +29,7 @@ class TopQuestionViewController: UIViewController {
 }
 
 private extension TopQuestionViewController {
-	func configureUI(with question: Question) {
+	func configureUI(with question: Questions.Question) {
 		questionView.isHidden = false
 		scoreLabel.text = question.score.thousandsFormatting
 		titleLabel.text = question.title
@@ -51,11 +51,10 @@ private extension TopQuestionViewController {
 		let questionsResource = QuestionsResource()
 		let questionsRequest = ApiRequest(resource: questionsResource)
 		request = questionsRequest
-		questionsRequest.load { [weak self] (questions: [Question]?) in
+        questionsRequest.load { [weak self] (questions) in
 			self?.activityIndicator.stopAnimating()
-			guard let questions = questions,
-				let topQuestion = questions.first else {
-					return
+			guard let qs = questions, let topQuestion = qs?.items.first else {
+			    return
 			}
 			self?.configureUI(with: topQuestion)
 			if let owner = topQuestion.owner {
