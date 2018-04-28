@@ -9,20 +9,19 @@
 import Foundation
 
 class NetworkController1 {
-	func loadQuestions(withCompletion completion: @escaping ([Question]?) -> Void) {
+	func loadQuestions(withCompletion completion: @escaping (Questions?) -> Void) {
 		let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
 		let url = URL(string: "https://api.stackexchange.com/2.2/questions?order=desc&sort=votes&site=stackoverflow")!
 		let task = session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
-			guard let data = data else {
+            guard let data = data else {
 				completion(nil)
 				return
 			}
-			guard let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) else {
+            guard let json = try? JSONDecoder().decode(Questions.self, from: data) else {
 				completion(nil)
 				return
 			}
-			let questions: [Question] = [] // Transform JSON into Question values
-			completion(questions)
+			completion(json)
 		})
 		task.resume()
 	}
@@ -36,11 +35,7 @@ class NetworkController {
 		let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
 		let url = URL(string: urlString)!
 		let task = session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
-			guard let data = data else {
-				completion(nil)
-				return
-			}
-			guard let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) else {
+            guard data != nil else {
 				completion(nil)
 				return
 			}
