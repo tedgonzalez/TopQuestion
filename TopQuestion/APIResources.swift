@@ -31,6 +31,7 @@ struct QuestionsResource: ApiResource {
 	
     func makeModel(data: Data) -> Questions? {
         let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .secondsSince1970
         guard let questions = try? decoder.decode(Questions.self, from: data) else {
             return nil
         }
