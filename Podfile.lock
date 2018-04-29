@@ -1,0 +1,22 @@
+PODS:
+  - Alamofire (5.0.0.beta.1)
+
+DEPENDENCIES:
+  - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `alamofire5`)
+
+EXTERNAL SOURCES:
+  Alamofire:
+    :branch: alamofire5
+    :git: https://github.com/Alamofire/Alamofire.git
+
+CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: d2966e315954a649d689fcd8574cd5da734a90e8
+    :git: https://github.com/Alamofire/Alamofire.git
+
+SPEC CHECKSUMS:
+  Alamofire: 8dc618ab9e6a26d9d77559e4c35e59e56451e69e
+
+PODFILE CHECKSUM: 4f31b8be4d29df7c27aae7c19fb7d5b49517ee98
+
+COCOAPODS: 1.5.0
