@@ -63,7 +63,7 @@ private extension TopQuestionViewController {
 		}
 	}
 	
-	func fetchAvatar(for user: User) {
+	func fetchAvatar(for user: Questions.Question.User) {
 		guard let avatarURL = user.profileImageURL else {
 			return
 		}

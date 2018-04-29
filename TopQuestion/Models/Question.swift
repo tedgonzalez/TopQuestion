@@ -9,6 +9,18 @@
 import Foundation
 struct Questions: Codable {
     struct Question: Codable {
+        struct User: Codable {
+            let name: String?
+            let profileImageURL: URL?
+            let reputation: Int?
+            
+            enum CodingKeys: String, CodingKey {
+                case reputation
+                case name = "display_name"
+                case profileImageURL = "profile_image"
+            }
+        }
+        
         let title: String
         let score: Int
         let tags: [String]
